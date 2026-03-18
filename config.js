@@ -1,0 +1,16 @@
+import {
+  GOLD_PORT as SECRETS_PORT,
+  STRIPE_SECRET_KEY,
+  SQUARE_ACCESS_TOKEN,
+  SQUARE_LOCATION_ID,
+} from "./secrets.js";
+
+const CONFIG = {
+  GOLD_PORT: SECRETS_PORT || 6666,
+  CURRENCY: "usd",
+  ENVIRONMENT: "sandbox", // "sandbox" or "production"
+  STRIPE_ENABLED: !!STRIPE_SECRET_KEY,
+  SQUARE_ENABLED: !!SQUARE_ACCESS_TOKEN && !!SQUARE_LOCATION_ID,
+};
+
+export default CONFIG;
