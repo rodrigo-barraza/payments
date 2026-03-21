@@ -1,5 +1,5 @@
 {
-  "name": "payment-api",
+  "name": "payments",
   "version": "0.1.0",
   "description": "Unified payments API — Stripe (online) + Square (in-person POS)",
   "type": "module",
