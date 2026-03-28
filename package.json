@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bignumber.js": "^10.0.2",
     "express": "^5.1.0",
     "square": "^44.0.1",
     "stripe": "^20.4.1"

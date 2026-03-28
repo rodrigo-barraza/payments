@@ -6,6 +6,7 @@ import {
   SQUARE_WEBHOOK_SIGNATURE_KEY,
 } from "../secrets.js";
 import CONFIG from "../config.js";
+import { convertBigInts } from "../utilities.js";
 
 const squareClient = SQUARE_ACCESS_TOKEN
   ? new SquareClient({
@@ -26,26 +27,6 @@ function assertConfigured() {
       "Square is not configured — set SQUARE_ACCESS_TOKEN in secrets.js",
     );
   }
-}
-
-/**
- * Convert BigInt values in Square responses to regular numbers.
- * Square SDK returns amounts as BigInt which cannot be JSON-serialized.
- * @param {Object} obj — Object to convert
- * @returns {Object} Object with BigInts converted to Numbers
- */
-function convertBigInts(obj) {
-  if (obj === null || obj === undefined) return obj;
-  if (typeof obj === "bigint") return Number(obj);
-  if (Array.isArray(obj)) return obj.map(convertBigInts);
-  if (typeof obj === "object") {
-    const converted = {};
-    for (const [key, value] of Object.entries(obj)) {
-      converted[key] = convertBigInts(value);
-    }
-    return converted;
-  }
-  return obj;
 }
 
 /**
